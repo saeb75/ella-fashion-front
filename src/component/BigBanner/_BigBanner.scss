@@ -1,0 +1,25 @@
+.big_banner_container {
+  &_image {
+    position: relative;
+    button {
+      text-transform: uppercase;
+      position: absolute;
+      z-index: 99999;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: 50px;
+      font-size: $meduim;
+      font-weight: $fontMedium;
+      opacity: 0;
+      transition: 0.4s all;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    &:hover {
+      button {
+        opacity: 1;
+      }
+    }
+  }
+}
