@@ -1,6 +1,7 @@
 export let data = [
   {
     name: "Home",
+    link: "/",
     items: [
       { name: "home2" },
       { name: "home2" },
@@ -10,6 +11,7 @@ export let data = [
   },
   {
     name: "Shop",
+    link: "/category",
     items: [
       { name: "home2" },
       { name: "home2" },

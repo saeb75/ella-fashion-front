@@ -1,0 +1,197 @@
+import React, { useEffect, useState } from "react";
+import { Col, Container, Nav } from "react-bootstrap";
+
+import { IoPersonCircleOutline } from "react-icons/io5";
+import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+import { GiHamburgerMenu } from "react-icons/gi";
+import { GoSearch } from "react-icons/go";
+import {
+  AiOutlineHeart,
+  AiOutlineShopping,
+  AiOutlineClose,
+} from "react-icons/ai";
+import TrendAnime from "./TrendAnime";
+import NewAnime from "./NewAnime";
+import BulkAnime from "./BulkAnime";
+import logo from "../../../assents/ella.png";
+import { data } from "../../../Data/data";
+import { NavLink } from "react-router-dom";
+const Menu = () => {
+  const [hamburger, setHamburger] = useState(false);
+  const [scrollTop, setScrollTop] = useState("");
+  const [fixMenu, setFixMenu] = useState(false);
+
+  useEffect(() => {
+    const onScroll = (e) => {
+      setScrollTop(e.target.documentElement.scrollTop);
+      if (scrollTop > 140) {
+        setFixMenu(true);
+      } else {
+        setFixMenu(false);
+      }
+    };
+    window.addEventListener("scroll", onScroll);
+
+    return () => window.removeEventListener("scroll", onScroll);
+  }, [scrollTop]);
+
+  return (
+    <Container
+      fluid
+      className={`main__menu  ${fixMenu ? "fixMenu" : ""}`}
+      style={{ position: "relative", overflowy: "hidden" }}
+    >
+      <Container>
+        <div className="menu">
+          <div className="menu_hamburger">
+            <GiHamburgerMenu
+              onClick={() => setHamburger(true)}
+              style={{ fontSize: 25, marginRight: 10, cursor: "pointer" }}
+            />
+            <img src={logo} width="50" />
+          </div>
+
+          <Nav
+            className={`${hamburger ? "active" : ""}`}
+            style={{ zIndex: 99999 }}
+          >
+            <li className="closeHamburger">
+              <span>
+                <AiOutlineClose
+                  onClick={() => setHamburger(false)}
+                  style={{ fontSize: "1.5rem", cursor: "pointer" }}
+                />
+              </span>
+              <span>Available 24/7 at (018) 900-6690</span>
+            </li>
+            {data.map((item) => {
+              return (
+                <NavItemComponent
+                  title={item.name}
+                  link={item?.link}
+                  items={
+                    <>
+                      <DropDownItem
+                        title="home styles"
+                        items={item.items?.map((_item) => {
+                          return (
+                            <>
+                              <DropDownItem title={_item.name} />
+                            </>
+                          );
+                        })}
+                      />
+
+                      <DropDownItem title="new Skins" />
+                    </>
+                  }
+                  first
+                />
+              );
+            })}
+
+            <NavItemComponent title="Trend" anime={<TrendAnime />} first />
+            <NavItemComponent title="New In" anime={<NewAnime />} first />
+            <NavItemComponent title="Bulk Editor" anime={<BulkAnime />} first />
+          </Nav>
+          <div className="menu__option">
+            <div className="menu__option__search">
+              <p>Search</p> <GoSearch />
+            </div>
+            <div className="menu__option__line"></div>
+            <div className="menu__option__like">
+              <AiOutlineHeart />
+            </div>
+            <div className="menu__option__login">
+              <IoPersonCircleOutline
+                className="ml-2 mr-2"
+                style={{ fontSize: "25px" }}
+              />
+            </div>
+            <div className="menu__option__cart">
+              <AiOutlineShopping />
+              <span>0</span>
+            </div>
+          </div>
+        </div>
+      </Container>
+    </Container>
+  );
+};
+
+const DropDownItem = ({ title, items }) => {
+  const [open, setOpen] = useState(false);
+  return (
+    <>
+      <li
+        onMouseEnter={() => setOpen(true)}
+        onMouseLeave={() => setOpen(false)}
+        className={`nav__item__drop item_drop_down_pc   ${
+          open ? "active" : ""
+        }`}
+      >
+        <li className="nav__item__drop__item">{title}</li>
+        {items && <ul className="menu__drop__list">{items}</ul>}
+      </li>
+      <li
+        className={`nav__item__drop nav__item__mobile   ${
+          open ? "active" : ""
+        }`}
+      >
+        <li className="nav__item__drop__item " onClick={() => setOpen(true)}>
+          <span>{title}</span>
+          <span>{items && <IoIosArrowForward />}</span>
+        </li>
+        {items && (
+          <ul className="menu__drop__list">
+            <li className="backButton" onClick={() => setOpen(false)}>
+              <IoIosArrowBack style={{ marginRight: 30 }} />
+              {title}
+            </li>
+            {items}
+          </ul>
+        )}
+      </li>
+    </>
+  );
+};
+const NavItemComponent = ({ title, first, items, anime, close, link }) => {
+  const [open, setOpen] = useState(false);
+  useEffect(() => {
+    setOpen(false);
+  }, []);
+  let className = first
+    ? "nav__item  nav__item__pc "
+    : " nav__item__pc nav__item__drop__item ";
+
+  return (
+    <>
+      <li
+        onMouseEnter={() => setOpen(true)}
+        onMouseLeave={() => setOpen(false)}
+        className={` ${className} line ${open ? "active" : ""}`}
+      >
+        {link ? <NavLink to={link}>{title}</NavLink> : <li>{title}</li>}
+
+        {items && <ul className="menu__drop__list">{items}</ul>}
+        {anime && <div className="anime__dropDown  ">{anime}</div>}
+      </li>
+      <li className={`nav__item  nav__item__mobile  ${open ? "active" : ""}`}>
+        <li onClick={() => setOpen(true)}>
+          {title} <span>{items && <IoIosArrowForward />}</span>
+        </li>
+        {items && (
+          <ul className="menu__drop__list">
+            <li className="backButton" onClick={() => setOpen(false)}>
+              <IoIosArrowBack style={{ marginRight: 30 }} />
+              {title}
+            </li>
+            {items}
+          </ul>
+        )}
+      </li>
+    </>
+  );
+};
+
+export default Menu;

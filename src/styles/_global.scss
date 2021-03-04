@@ -1,11 +1,12 @@
 * {
   margin: 0px;
-  font-family: "Overpass", sans-serif;
+  font-family: "Overpass", arial, sans-serif;
   color: $fontBlack;
   padding: 0;
 }
-body {
-  height: 6000px;
+a {
+  text-decoration: none !important;
+  color: $fontBlack !important;
 }
 p {
   margin: 0;
@@ -17,6 +18,30 @@ p {
     padding: 0px;
   }
 }
+
+select.form-control {
+  outline: none;
+  border-radius: 0px;
+  border-color: $lightGrey;
+  font-size: $minSize;
+  color: $newGrey;
+  height: 40px;
+  &:focus {
+    border-color: $lightGrey;
+    outline: none;
+    box-shadow: none;
+  }
+  option {
+    text-transform: capitalize;
+    font-weight: $fontNormal;
+    font-size: $minSize;
+    line-height: 24px;
+    text-transform: capitalize;
+    color: $newGrey;
+    margin-right: 10px;
+  }
+}
+
 button {
   background-color: $white;
   font-weight: 300;

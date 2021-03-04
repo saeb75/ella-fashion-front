@@ -10,34 +10,36 @@ import img9 from "../assents/cardImage/19.webp";
 import img10 from "../assents/cardImage/17.jpg";
 import img11 from "../assents/cardImage/3.webp";
 import img12 from "../assents/cardImage/1.webp";
+import img13 from "../assents/cardImage/30.webp";
+import img14 from "../assents/cardImage/23.jpg";
 
 export const data = [
   {
-    img: img,
+    img: img13,
     brand: "marc",
     name: "abore et dolore magna aliqua",
-    images: [img, img5, img2, img4],
+    images: [img13, img5, img2, img4],
     stars: 5,
     price: 269.0,
     new: true,
     percent: 20,
   },
   {
-    img: img2,
+    img: img7,
     brand: "g-star",
     name: "laboris nisi ut aliquip exea",
-    images: [img2, img11],
+    images: [img7, img11],
     stars: 5,
     price: 589.0,
     new: true,
     percent: 30,
   },
   {
-    img: img3,
+    img: img14,
     brand: "chanel",
     name: "olore eu fugiat nulla pariatur",
     stars: 5,
-    images: [img3, img12],
+    images: [img14, img12],
     price: 569.0,
     new: true,
   },
@@ -69,9 +71,9 @@ export const data = [
     percent: 15,
   },
   {
-    img: img7,
+    img: img2,
     brand: "g-star",
-    images: [img7, img11],
+    images: [img2, img11],
     name: "officia deserunt mollit anim ",
     stars: 5,
     price: 659.0,
