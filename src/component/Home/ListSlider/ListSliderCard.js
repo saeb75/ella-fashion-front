@@ -8,11 +8,11 @@ const ListSliderCard = ({ item }) => {
   return (
     <div className="list_slider_card">
       <div className="list_slider_image">
-        <img src={state} style={{ width: "100%", height: 400 }} />
+        <img src={state} style={{ width: "100%", height: "100%" }} />
         <img
           src={item.images[1]}
           className="imageHover"
-          style={{ width: "100%", height: 400 }}
+          style={{ width: "100%", height: "100%" }}
         />
         <div className="new_discount_Container">
           {item.new && <span className="new">New</span>}

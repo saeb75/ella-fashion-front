@@ -1,4 +1,4 @@
-export const data = [
+export const filterData = [
   {
     name: "categories",
   },

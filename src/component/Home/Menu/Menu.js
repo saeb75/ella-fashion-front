@@ -16,10 +16,14 @@ import BulkAnime from "./BulkAnime";
 import logo from "../../../assents/ella.png";
 import { data } from "../../../Data/data";
 import { NavLink } from "react-router-dom";
+import { AnimatePresence, motion } from "framer-motion";
+import { toRight } from "../../animations/animations";
+import CartSection from "../CartSection/CartSection";
 const Menu = () => {
   const [hamburger, setHamburger] = useState(false);
   const [scrollTop, setScrollTop] = useState("");
   const [fixMenu, setFixMenu] = useState(false);
+  const [cart, setCart] = useState(false);
 
   useEffect(() => {
     const onScroll = (e) => {
@@ -36,94 +40,110 @@ const Menu = () => {
   }, [scrollTop]);
 
   return (
-    <Container
-      fluid
-      className={`main__menu  ${fixMenu ? "fixMenu" : ""}`}
-      style={{ position: "relative", overflowy: "hidden" }}
-    >
-      <Container>
-        <div className="menu">
-          <div className="menu_hamburger">
-            <GiHamburgerMenu
-              onClick={() => setHamburger(true)}
-              style={{ fontSize: 25, marginRight: 10, cursor: "pointer" }}
-            />
-            <img src={logo} width="50" />
-          </div>
-
-          <Nav
-            className={`${hamburger ? "active" : ""}`}
-            style={{ zIndex: 99999 }}
-          >
-            <li className="closeHamburger">
-              <span>
-                <AiOutlineClose
-                  onClick={() => setHamburger(false)}
-                  style={{ fontSize: "1.5rem", cursor: "pointer" }}
-                />
-              </span>
-              <span>Available 24/7 at (018) 900-6690</span>
-            </li>
-            {data.map((item) => {
-              return (
-                <NavItemComponent
-                  title={item.name}
-                  link={item?.link}
-                  items={
-                    <>
-                      <DropDownItem
-                        title="home styles"
-                        items={item.items?.map((_item) => {
-                          return (
-                            <>
-                              <DropDownItem title={_item.name} />
-                            </>
-                          );
-                        })}
-                      />
-
-                      <DropDownItem title="new Skins" />
-                    </>
-                  }
-                  first
-                />
-              );
-            })}
-
-            <NavItemComponent title="Trend" anime={<TrendAnime />} first />
-            <NavItemComponent title="New In" anime={<NewAnime />} first />
-            <NavItemComponent title="Bulk Editor" anime={<BulkAnime />} first />
-          </Nav>
-          <div className="menu__option">
-            <div className="menu__option__search">
-              <p>Search</p> <GoSearch />
-            </div>
-            <div className="menu__option__line"></div>
-            <div className="menu__option__like">
-              <AiOutlineHeart />
-            </div>
-            <div className="menu__option__login">
-              <IoPersonCircleOutline
-                className="ml-2 mr-2"
-                style={{ fontSize: "25px" }}
+    <>
+      <Container
+        fluid
+        className={`main__menu  ${fixMenu ? "fixMenu" : ""}`}
+        style={{ overflowy: "hidden", position: "relative" }}
+      >
+        <Container>
+          <div className="menu">
+            <div className="menu_hamburger">
+              <GiHamburgerMenu
+                onClick={() => setHamburger(true)}
+                style={{ fontSize: 25, marginRight: 10, cursor: "pointer" }}
               />
+              <img src={logo} width="50" />
             </div>
-            <div className="menu__option__cart">
-              <AiOutlineShopping />
-              <span>0</span>
+
+            <Nav
+              className={`${hamburger ? "active" : ""}`}
+              style={{ zIndex: 99999 }}
+            >
+              <li className="closeHamburger">
+                <span>
+                  <AiOutlineClose
+                    onClick={() => setHamburger(false)}
+                    style={{ fontSize: "1.5rem", cursor: "pointer" }}
+                  />
+                </span>
+                <span>Available 24/7 at (018) 900-6690</span>
+              </li>
+              {data.map((item, index) => {
+                return (
+                  <NavItemComponent
+                    key={index}
+                    title={item.name}
+                    link={item?.link}
+                    items={
+                      <>
+                        <DropDownItem
+                          title="home styles"
+                          items={item.items?.map((_item, index) => {
+                            return (
+                              <>
+                                <DropDownItem key={index} title={_item.name} />
+                              </>
+                            );
+                          })}
+                        />
+
+                        <DropDownItem title="new Skins" />
+                      </>
+                    }
+                    first
+                  />
+                );
+              })}
+
+              <NavItemComponent title="Trend" anime={<TrendAnime />} first />
+              <NavItemComponent title="New In" anime={<NewAnime />} first />
+              <NavItemComponent
+                title="Bulk Editor"
+                anime={<BulkAnime />}
+                first
+              />
+            </Nav>
+
+            <div className="menu__option">
+              <div className="menu__option__search">
+                <p>Search</p> <GoSearch />
+              </div>
+              <div className="menu__option__line"></div>
+              <div className="menu__option__like">
+                <AiOutlineHeart />
+              </div>
+              <div className="menu__option__login">
+                <IoPersonCircleOutline
+                  className="ml-2 mr-2"
+                  style={{ fontSize: "25px" }}
+                />
+              </div>
+              <div
+                className="menu__option__cart"
+                style={{ cursor: "pointer" }}
+                onClick={() => setCart(true)}
+              >
+                <AiOutlineShopping />
+                <span>0</span>
+              </div>
             </div>
           </div>
-        </div>
+        </Container>
       </Container>
-    </Container>
+      <div className={`cart_section ${cart ? "active" : ""}`}>
+        <CartSection setCart={setCart} />
+      </div>
+    </>
   );
 };
 
-const DropDownItem = ({ title, items }) => {
+const DropDownItem = ({ title, items, key }) => {
   const [open, setOpen] = useState(false);
   return (
     <>
       <li
+        key={key}
         onMouseEnter={() => setOpen(true)}
         onMouseLeave={() => setOpen(false)}
         className={`nav__item__drop item_drop_down_pc   ${
@@ -142,15 +162,24 @@ const DropDownItem = ({ title, items }) => {
           <span>{title}</span>
           <span>{items && <IoIosArrowForward />}</span>
         </li>
-        {items && (
-          <ul className="menu__drop__list">
-            <li className="backButton" onClick={() => setOpen(false)}>
-              <IoIosArrowBack style={{ marginRight: 30 }} />
-              {title}
-            </li>
-            {items}
-          </ul>
-        )}
+        <AnimatePresence exitBeforeEnter>
+          {open && items && (
+            <motion.ul
+              className="menu__drop__list"
+              variants={toRight}
+              initial="hidden"
+              animate="show"
+              key={title}
+              exit="exit"
+            >
+              <li className="backButton" onClick={() => setOpen(false)}>
+                <IoIosArrowBack style={{ marginRight: 30 }} />
+                {title}
+              </li>
+              {items}
+            </motion.ul>
+          )}
+        </AnimatePresence>
       </li>
     </>
   );
@@ -180,15 +209,24 @@ const NavItemComponent = ({ title, first, items, anime, close, link }) => {
         <li onClick={() => setOpen(true)}>
           {title} <span>{items && <IoIosArrowForward />}</span>
         </li>
-        {items && (
-          <ul className="menu__drop__list">
-            <li className="backButton" onClick={() => setOpen(false)}>
-              <IoIosArrowBack style={{ marginRight: 30 }} />
-              {title}
-            </li>
-            {items}
-          </ul>
-        )}
+        <AnimatePresence exitBeforeEnter>
+          {open && (
+            <motion.ul
+              className="menu__drop__list"
+              variants={toRight}
+              initial="hidden"
+              animate="show"
+              exit="exit"
+              key={title}
+            >
+              <li className="backButton" onClick={() => setOpen(false)}>
+                <IoIosArrowBack style={{ marginRight: 30 }} />
+                {title}
+              </li>
+              {items}
+            </motion.ul>
+          )}
+        </AnimatePresence>
       </li>
     </>
   );

@@ -16,9 +16,11 @@ import Menu from "../../component/Home/Menu/Menu";
 import NewCollection from "../../component/Home/NewCollection/NewCollection";
 import NewsSignup from "../../component/Home/NewsSignup/NewsSignup";
 import SmallBanner from "../../component/Home/SmallBanner/SmallBanner";
-
+import { about } from "../../Data/ProductInfo";
 import "./style.css";
 import { motion } from "framer-motion";
+import { homeBanner } from "../../Data/newCollection";
+import { homeBigBanner } from "../../Data/BigBanner";
 const Home = () => {
   return (
     <>
@@ -29,14 +31,14 @@ const Home = () => {
       <motion.div variants={fade} initial="hidden" animate="show" exit="exit">
         <MainSlider />
         <SmallBanner />
-        <ListSliderContainer />
-        <BigBanner />
+        <ListSliderContainer title="best selling" viewAll={true} />
+        <BigBanner data={homeBigBanner} />
         <ExploreSection />
         <FeaturedProduct />
         <CollectionProducts />
         <ContactSection />
-        <NewCollection />
-        <AboutUs />
+        <NewCollection data={homeBanner} />
+        <AboutUs data={about} />
         <InstagramGallery />
         <NewsSignup />
         <Footer />

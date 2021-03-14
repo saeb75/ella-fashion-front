@@ -1,10 +1,19 @@
-import React, { useEffect, useRef } from "react";
-import { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
+
 import styled from "styled-components";
-import { data } from "../../../Data/filterData";
-const FilterProduct = () => {
+import ListSlider from "../../Home/ListSlider/ListSlider";
+import { filterData } from "../../../Data/filterData";
+import { data } from "../../../Data/SliderData";
+import { AiOutlineClose } from "react-icons/ai";
+const FilterProduct = ({ SetOpen }) => {
   return (
     <div className="filter_products">
+      <div
+        className="filter_products_close  mb-5"
+        onClick={() => SetOpen(false)}
+      >
+        <AiOutlineClose />
+      </div>
       <ul className="filter_products_list">
         <FilterSection title="categories">
           <CategoryFilter />
@@ -25,6 +34,10 @@ const FilterProduct = () => {
           <ProductTypeFilter />
         </FilterSection>
       </ul>
+      <div className="filter_slider">
+        <li>featured products</li>
+        <ListSlider data={data} slide={1} navigation={true} oneSlide={true} />
+      </div>
     </div>
   );
 };

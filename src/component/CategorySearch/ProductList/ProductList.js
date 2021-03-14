@@ -1,19 +1,35 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ListSliderCard from "../../Home/ListSlider/ListSliderCard";
 import { data } from "../../../Data/productList";
 import { Col, Row } from "react-bootstrap";
-import { motion } from "framer-motion";
+import { motion, useAnimation } from "framer-motion";
 import { toTop, parents } from "../../animations/animations";
+import { useInView } from "react-intersection-observer";
 const ProductList = () => {
+  let controls = useAnimation();
+  let [element, view] = useInView();
+  if (view) {
+    controls.start("show");
+  } else {
+    controls.start("show");
+  }
+
   return (
-    <div>
-      <motion.div variants={parents} initial="hidden" animate="show">
+    <div ref={element}>
+      <motion.div variants={parents} ref={element} animate={controls}>
         <Row>
-          {data.map((item) => {
+          {data.map((item, index) => {
             return (
-              <motion.div className="col-md-4 slideContainer" variants={toTop}>
+              <Col
+                key={index}
+                className="slideContainer"
+                md="6"
+                xs="6"
+                lg="6"
+                variants={toTop}
+              >
                 <ListSliderCard item={item} />
-              </motion.div>
+              </Col>
             );
           })}
         </Row>

@@ -7,8 +7,8 @@ import { Gallery, Item } from "react-photoswipe-gallery";
 const InstagramGallery = () => {
   return (
     <Container className="insta_gallery">
-      <div className="insta_gallery_title text-center">Ella’s Instagram</div>
-      <div className="insta_gallery_link text-center">FOLLOW US @ELLANOW</div>
+      <div className="insta_gallery_title text-center">Fashion’s Instagram</div>
+      <div className="insta_gallery_link text-center">FOLLOW US @FASHION</div>
       <Gallery>
         <Row className="mt-5">
           {data.map((item) => {

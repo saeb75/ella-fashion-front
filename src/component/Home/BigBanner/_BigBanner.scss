@@ -15,10 +15,33 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      @include mediaQuery($xl) {
+        font-size: 0.8rem;
+      }
+      @include mediaQuery($md) {
+        font-size: 0.8rem;
+      }
+      @include mediaQuery($sm) {
+        font-size: 0.65rem;
+        padding: 10px;
+        width: 80%;
+      }
     }
+
     &:hover {
       button {
         opacity: 1;
+        @include mediaQuery($xl) {
+          font-size: 0.8rem;
+        }
+        @include mediaQuery($md) {
+          font-size: 0.8rem;
+        }
+        @include mediaQuery($sm) {
+          font-size: 0.65rem;
+          padding: 10px;
+          width: 80%;
+        }
       }
     }
   }

@@ -10,8 +10,8 @@ const Header = () => {
     <Container fluid style={{ borderBottom: `0.2px solid ${theme.lightGrey}` }}>
       <Container>
         <header className="header flex flex-jc-sp">
-          <div>
-            <img src={logo} width="100" />
+          <div className="logo">
+            Saeb<span>FBD</span>
           </div>
           <div className="flex">
             <div className="header__flash__button">

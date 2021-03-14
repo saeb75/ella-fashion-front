@@ -43,6 +43,11 @@ select.form-control {
 }
 
 button {
+  &:focus {
+    border: none;
+    outline: none;
+  }
+  text-transform: uppercase;
   background-color: $white;
   font-weight: 300;
   font-size: 18px;
@@ -103,4 +108,13 @@ button {
     justify-content: center;
     align-items: center;
   }
+}
+
+input {
+  padding: 10px;
+  font-size: $minSize;
+
+  outline: none;
+  box-shadow: none;
+  border: 1px solid $grey;
 }

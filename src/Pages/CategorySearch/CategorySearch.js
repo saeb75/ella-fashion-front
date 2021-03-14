@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Container } from "react-bootstrap";
 import { fade } from "../../component/animations/animations";
 import Menu from "../../component/Home/Menu/Menu";
@@ -11,6 +11,7 @@ import Footer from "../../component/Home/Footer/Footer";
 import NewsSignup from "../../component/Home/NewsSignup/NewsSignup";
 import { motion } from "framer-motion";
 const CategorySearch = () => {
+  const [open, setOpen] = useState(false);
   return (
     <>
       <Container fluid className="mainHeader p-0 m-0">
@@ -20,8 +21,8 @@ const CategorySearch = () => {
       <motion.div variants={fade} initial="hidden" animate="show" exit="exit">
         <Banner />
         <JumpTo />
-        <SortBy />
-        <FilterAndProducts />
+        <SortBy setOpen={setOpen} />
+        <FilterAndProducts open={open} setOpen={setOpen} />
         <NewsSignup />
         <Footer />
       </motion.div>

@@ -4,9 +4,18 @@
     @extend .flex-center;
     .list_slider_title {
       font-family: $dmFont;
-      font-weight: $fontBold;
+      font-weight: 400;
       font-size: $large + 1;
       text-transform: capitalize;
+      @include mediaQuery($xl) {
+        font-size: 1.8rem;
+      }
+      @include mediaQuery($md) {
+        font-size: 1.6rem;
+      }
+      @include mediaQuery($sm) {
+        font-size: 1.5rem;
+      }
     }
     .slider_view_button {
       text-transform: uppercase;

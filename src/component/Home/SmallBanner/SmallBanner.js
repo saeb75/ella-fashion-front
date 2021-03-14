@@ -3,13 +3,14 @@ import { Card, Col, Container, Row } from "react-bootstrap";
 import banner1 from "../../../assents/small/1.jpg";
 import banner2 from "../../../assents/small/2.jpg";
 import banner3 from "../../../assents/small/3.jpg";
+import banner4 from "../../../assents/shoe.jpeg";
 let BannerData = [
   {
     img: banner1,
     title: "EDITOR'S PICK",
   },
   {
-    img: banner2,
+    img: banner4,
     title: "SHOES",
   },
   {
@@ -26,7 +27,7 @@ const SmallBanner = () => {
             return (
               <Col xl="4" md="4" sm="12">
                 <Card className="imageScale">
-                  <img src={item.img} />
+                  <img src={item.img} style={{ width: "100%", height: 196 }} />
                   <div className="small_banner_title">{item.title}</div>
                 </Card>
               </Col>

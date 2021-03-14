@@ -6,6 +6,10 @@ import { GlobalStyle, theme } from "./Global";
 import Home from "./Pages/Home/Home";
 import CategorySearch from "./Pages/CategorySearch/CategorySearch";
 import { AnimatePresence } from "framer-motion";
+import SingleProduct from "./Pages/SingleProduct/SingleProduct";
+import { useEffect } from "react";
+import SignUp from "./Pages/SignUp/SignUp";
+import ActiveAccount from "./Pages/ActiveAccount/ActiveAccount";
 
 function App() {
   let location = useLocation();
@@ -17,6 +21,9 @@ function App() {
           <Switch location={location} key={location.pathname}>
             <Route exact path="/" component={Home} />
             <Route path="/category" component={CategorySearch} />
+            <Route path="/product" component={SingleProduct} />
+            <Route path="/register" component={SignUp} />
+            <Route path="/active/account/:token" component={ActiveAccount} />
           </Switch>
         </AnimatePresence>
       </ThemeProvider>

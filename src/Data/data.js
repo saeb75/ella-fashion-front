@@ -3,20 +3,20 @@ export let data = [
     name: "Home",
     link: "/",
     items: [
+      { name: "home1" },
       { name: "home2" },
-      { name: "home2" },
-      { name: "home2" },
-      { name: "home2" },
+      { name: "home3" },
+      { name: "home4" },
     ],
   },
   {
     name: "Shop",
     link: "/category",
     items: [
-      { name: "home2" },
-      { name: "home2" },
-      { name: "home2" },
-      { name: "home2" },
+      { name: "Shop1" },
+      { name: "Shop2" },
+      { name: "Shop3" },
+      { name: "Shop4" },
     ],
   },
   {
@@ -25,19 +25,19 @@ export let data = [
   {
     name: "Lookbook",
     items: [
-      { name: "home2" },
-      { name: "home2" },
-      { name: "home2" },
-      { name: "home2" },
+      { name: "Pages1" },
+      { name: "Pages3" },
+      { name: "Pages4" },
+      { name: "Pages5" },
     ],
   },
   {
     name: "Blog",
     items: [
-      { name: "home2" },
-      { name: "home2" },
-      { name: "home2" },
-      { name: "home2" },
+      { name: "Blog1" },
+      { name: "Blog2" },
+      { name: "Blog3" },
+      { name: "Blog4" },
     ],
   },
 

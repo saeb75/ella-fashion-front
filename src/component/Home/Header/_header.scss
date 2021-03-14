@@ -7,6 +7,23 @@
 } */
 .header {
   padding: 10px 0px;
+  .logo {
+    font-family: $dmFont;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    font-weight: 600;
+    span {
+      font-family: $dmFont;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 2rem;
+      color: $grey;
+      font-weight: 600;
+    }
+  }
   @include mediaQuery($xl) {
     display: none;
   }
